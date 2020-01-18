@@ -34,7 +34,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 
-	runtime('mysql:mysql-connector-java')
+	runtime('mysql:mysql-connector-java:5.1.48')
 	compile ('javax.xml.bind:jaxb-api:2.3.0')
 	compile ('javassist:javassist:3.12.1.GA')
 	compileOnly 'org.projectlombok:lombok:1.18.10'

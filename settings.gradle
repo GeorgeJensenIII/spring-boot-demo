@@ -1,0 +1,3 @@
+include 'spring-boot-demo-01-basic'
+include 'spring-boot-demo-02-flyway-integration'
+include 'spring-boot-demo-03-authentication'
