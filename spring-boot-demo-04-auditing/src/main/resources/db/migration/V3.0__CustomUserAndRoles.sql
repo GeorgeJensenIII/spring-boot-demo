@@ -25,25 +25,32 @@ create table user_roles (
 create unique index idx_user_role_id on user_roles (user_id, role_id);
 
 -- Password is welcome@123#
-INSERT INTO `userinfo` (`first_name`, `last_name`, `email_address`, `password`)
-VALUES ('Super', 'Admin', 'admin@tw.com', '$2a$10$yPIWEiYj8sGLox.9cPKPZe6GgGRy.T8iV/sR2Br1PyA0UzLaYVOa.');
+INSERT INTO `userinfo` (`id`, `first_name`, `last_name`, `email_address`, `password`)
+VALUES (1, 'Super', 'Admin 01', 'admin01@tw.com', '$2a$10$yPIWEiYj8sGLox.9cPKPZe6GgGRy.T8iV/sR2Br1PyA0UzLaYVOa.');
+
+INSERT INTO `userinfo` (`id`, `first_name`, `last_name`, `email_address`, `password`)
+VALUES (2, 'Super', 'Admin 02', 'admin02@tw.com', '$2a$10$yPIWEiYj8sGLox.9cPKPZe6GgGRy.T8iV/sR2Br1PyA0UzLaYVOa.');
+
 
 -- Password is welcome@123#
-INSERT INTO `userinfo` (`first_name`, `last_name`, `email_address`, `password`)
-VALUES ('Test', 'User', 'testuser@tw.com', '$2a$10$yPIWEiYj8sGLox.9cPKPZe6GgGRy.T8iV/sR2Br1PyA0UzLaYVOa.');
+INSERT INTO `userinfo` (`id`, `first_name`, `last_name`, `email_address`, `password`)
+VALUES (3, 'Test', 'User', 'testuser@tw.com', '$2a$10$yPIWEiYj8sGLox.9cPKPZe6GgGRy.T8iV/sR2Br1PyA0UzLaYVOa.');
 
 
 
-INSERT INTO `roles` (`role_name`)
-VALUES ('ROLE_ADMIN');
+INSERT INTO `roles` (`id`, `role_name`)
+VALUES (1, 'ROLE_ADMIN');
 
-INSERT INTO `roles` (`role_name`)
-VALUES ('ROLE_USER');
+INSERT INTO `roles` (`id`, `role_name`)
+VALUES (2, 'ROLE_USER');
 
 INSERT INTO `user_roles` (`user_id`, `role_id`)
 VALUES(1, 1);
 
 INSERT INTO `user_roles` (`user_id`, `role_id`)
-VALUES(2, 2);
+VALUES(2, 1);
+
+INSERT INTO `user_roles` (`user_id`, `role_id`)
+VALUES(3, 2);
 
 commit;
