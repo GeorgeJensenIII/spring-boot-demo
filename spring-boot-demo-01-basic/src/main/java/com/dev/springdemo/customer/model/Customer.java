@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,4 +37,13 @@ public class Customer {
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")
     private List<Address> addresses;
+
+    public void setAddresses(List<Address> addresses) {
+        if(this.addresses == null) {
+            this.addresses = new ArrayList<>();
+        }else {
+            this.addresses.clear();
+        }
+        this.addresses.addAll(addresses);
+    }
 }

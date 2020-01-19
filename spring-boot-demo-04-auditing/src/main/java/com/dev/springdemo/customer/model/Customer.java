@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,4 +31,13 @@ public class Customer {
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")
     private List<Address> addresses;
+
+    public void setAddresses(List<Address> addresses) {
+        if(this.addresses == null) {
+            this.addresses = new ArrayList<>();
+        }else {
+            this.addresses.clear();
+        }
+        this.addresses.addAll(addresses);
+    }
 }

@@ -31,7 +31,15 @@ public class CustomerService {
 
     //Update the customer
     public Customer update(Customer customer) {
-        return customerRepository.save(customer);
+        Optional<Customer> optionalCustomer = customerRepository.findById(customer.getId());
+        if(optionalCustomer.isEmpty()) {
+            throw new RuntimeException("Cannot find the customer by id " + customer.getId());
+        }
+        Customer existingCustomer = optionalCustomer.get();
+        existingCustomer.setAddresses(customer.getAddresses());
+        existingCustomer.setFirstName(customer.getFirstName());
+        existingCustomer.setLastName(customer.getLastName());
+        return customerRepository.save(existingCustomer);
     }
 
     //Find all customers by name
