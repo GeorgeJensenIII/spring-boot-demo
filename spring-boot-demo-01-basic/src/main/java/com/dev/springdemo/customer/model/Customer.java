@@ -1,5 +1,6 @@
 package com.dev.springdemo.customer.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -35,7 +36,8 @@ public class Customer {
     private @NonNull String emailAddress;
 
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Address.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customer_id")
+    @JsonManagedReference
     private List<Address> addresses;
 
     public void setAddresses(List<Address> addresses) {

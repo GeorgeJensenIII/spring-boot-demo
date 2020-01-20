@@ -1,5 +1,6 @@
 package com.dev.springdemo.customer.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by sunitc on 4/19/18.
@@ -28,6 +30,8 @@ public class Address {
     private @NonNull String country;
     private @NonNull String zipCode;
 
-    private Long customerId;
+    @ManyToOne
+    @JsonBackReference
+    private Customer customer;
 
 }
