@@ -1,9 +1,12 @@
 package com.dev.springdemo.customer.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -24,6 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Audited
 public class Customer {
 
     @Id
@@ -35,8 +39,10 @@ public class Customer {
     private @NonNull String lastName;
     private @NonNull String emailAddress;
 
+    @NotAudited
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Address.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customer_id")
+    @JsonManagedReference
     private List<Address> addresses;
 
     @Column(name = "created_by")

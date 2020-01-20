@@ -1,14 +1,13 @@
 package com.dev.springdemo.customer.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by sunitc on 4/19/18.
@@ -17,6 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@Audited
 public class Address {
 
     @Id
@@ -29,6 +29,8 @@ public class Address {
     private @NonNull String country;
     private @NonNull String zipCode;
 
-    private Long customerId;
+    @ManyToOne
+    @JsonBackReference
+    private Customer customer;
 
 }
